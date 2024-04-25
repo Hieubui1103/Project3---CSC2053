@@ -14,11 +14,14 @@ export default function Lyrics() {
       
   function getLyricsFromApi() {
   //lyric api :https://api.lyrics.ovh/v1/artist/title  
+
+  //var urlTitle = 
        
-  fetch('https://api.lyrics.ovh/v1/'+artist+'/'+title)
+  fetch('https://api.lyrics.ovh/v1/'+artist+'/'+title.replace("'", '%20'))
     .then((response) => response.json())
     .then((json) => {  
       /* view the JSON that's returned in the server log */ 
+    //  console.log('https://api.lyrics.ovh/v1/'+artist+'/'+urlTitle);
       console.log(json);      
 
       let tempLyrics;// = json.lyrics;
@@ -64,7 +67,7 @@ export default function Lyrics() {
                 }
                 newText = newText.join(' ');
               }
-              setTitle(makeCapital(newText).replace("'", '%'));
+              setTitle(makeCapital(newText));
             }}
           />
       <TextInput
