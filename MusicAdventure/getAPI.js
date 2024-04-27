@@ -8,7 +8,7 @@ async function getInfo(searchQuery) {
         const searchUrl = `https://api.spotify.com/v1/search?q=${encodeURIComponent(searchQuery)}&type=album&limit=50`;
 
         //const token = await getToken();
-        const accessToken = "BQCHo1ZDqVm_fglV_3rjW6oE5bznWm2z3RzbibklI4TDx8U2STdbSjDDnkxxMq379oY_okczEQfSF_JfDDvr9QdLWJ0H-tUgUdKliMC_PA16-37oVsk"
+        const accessToken = "BQA4zvctGntyN1DbEim5A5cihzRk0bvAPCXm2EpmBtTLj29AAYqDKLl1g-oiCd9-zWVhQi3kvgI8c4uWVYCu_Mi4eDNuwF7nrHz7bBnFYD9yT4Lv-Ys"
         const response = await fetch(searchUrl, {
             method: "GET",
             headers: {

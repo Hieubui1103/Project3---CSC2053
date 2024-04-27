@@ -19,7 +19,7 @@ const ListOfAlbums = ({ route,navigation }) => {
         
           if (response1.ok) {
             const albumInfo = await response1.json();
-            return albumInfo.tracks.items.map((track, index) => `${index + 1} - ${track.name} \n`);
+            return albumInfo.tracks.items.map((track, index) => `${index + 1} - ${track.name}`);
         } else {
             console.error(`Failed to fetch album tracks for album ID ${id}`);
             return [];
@@ -48,7 +48,7 @@ const ListOfAlbums = ({ route,navigation }) => {
 
     const handleAlbumPress = async (album) => {
         const songList = await getSongs(album.access, album.album_id);
-        navigation.navigate('Song Details', { albumName: album.album_name, songList: songList, albumImage: album.ImageUrl });
+        navigation.navigate('Song Details', { albumName: album.album_name, songList: songList, albumImage: album.ImageUrl, artist: route.params });
     };
 
     return (
@@ -92,7 +92,8 @@ const styles = StyleSheet.create({
         fontSize: 15,
         flexWrap: 'wrap',
         fontWeight: 'bold',
-        color: 'white'
+        color: 'white',
+        lineHeight: 22
     },
     border: {
         flex: 1,

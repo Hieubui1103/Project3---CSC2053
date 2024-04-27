@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Image, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-const SongDetailed = ({ route }) => {
-    const { albumName, songList, albumImage } = route.params;
+const SongDetailed = ({ route, navigation }) => {
+    const { albumName, songList, albumImage, artist} = route.params;
     console.log(route.params)
     return (
         <View style={styles.container}>
@@ -10,15 +10,20 @@ const SongDetailed = ({ route }) => {
             <Image source={{ uri: albumImage }} style={styles.albumPhoto}/>
             <Text style={styles.albumName}>{albumName}</Text>
             </View>
+            
             <FlatList
                 data={songList}
                 renderItem={({ item }) => (
+                <TouchableOpacity onPress={() => {navigation.navigate('Lyrics', {title: item, artist: artist})}}>
                     <View >
                         <Text style={styles.item}>{item}</Text>
                     </View>
+                </TouchableOpacity>
                 )}
+                
             />
-            </View>
+            
+        </View>
     );
 };
 
@@ -48,11 +53,14 @@ const styles = StyleSheet.create({
         color: 'white'
     },
     albumName: {
+        width: 280,
+        flexWrap: 'wrap',
         padding: 10,
         fontSize: 20,
         marginTop: 15,
         marginBottom: 15,
-        color: 'lightgrey'
+        color: 'lightgrey',
+        
     }
 });
 
