@@ -19,7 +19,7 @@ const ListOfAlbums = ({ route,navigation }) => {
         
           if (response1.ok) {
             const albumInfo = await response1.json();
-            return albumInfo.tracks.items.map((track, index) => `${index + 1} - ${track.name} \n`);
+            return albumInfo.tracks.items.map((track, index) => `${index + 1} - ${track.name}`);
         } else {
             console.error(`Failed to fetch album tracks for album ID ${id}`);
             return [];
@@ -33,6 +33,7 @@ const ListOfAlbums = ({ route,navigation }) => {
                 const data = await getInfo(capitalizeEachWord(route.params));
                 //console.log(data);
                 setAlbums(data); 
+                console.log(albums);
                 /*for (let i = 0; i < data.length; i++){
                 let songList = await getSongs(data[i].access, data[i].album_id);
                 console.log(data[i].album_name)
@@ -48,55 +49,48 @@ const ListOfAlbums = ({ route,navigation }) => {
 
     const handleAlbumPress = async (album) => {
         const songList = await getSongs(album.access, album.album_id);
-        navigation.navigate('Song Details', { albumName: album.album_name, songList: songList, albumImage: album.ImageUrl });
+        navigation.navigate('Song Details', { albumName: album.album_name, songList: songList, albumImage: album.ImageUrl, artist: route.params });
     };
 
     return (
-    <View style={styles.container}>
-        <View>
-            <FlatList
-                data={albums}
-                renderItem={({ item }) => (
-                    <TouchableOpacity style={styles.containerButton}
-                    onPress={() => handleAlbumPress(item)}>
-                        <Image source={{ uri: item.ImageUrl }} style={styles.albumPhoto} />
-                        <View style={styles.border}>
-                            <Text style={styles.item}>{item.album_name}</Text>
-                        </View>
-                    </TouchableOpacity>
-                )}
-            />
+        <View style={styles.container}>
+          <FlatList
+            data={albums}
+            renderItem={({ item }) => (
+              <TouchableOpacity style={styles.albumContainer} onPress={() => handleAlbumPress(item)}>
+                <Image source={{ uri: item.ImageUrl }} style={styles.albumPhoto} />
+                <Text style={styles.albumName}>{item.album_name}</Text>
+              </TouchableOpacity>
+            )}
+            keyExtractor={item => item.album_id}
+          />
         </View>
-    </View>
-    );
+      );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: "#3D213E"
+      flex: 1,
+      backgroundColor: "#1E1E1E",
     },
-    containerButton: {
-        flexDirection: 'row', // Arrange children horizontally
-        alignItems: 'center', // Align children vertically
-        padding: 10
+    albumContainer: {
+      flexDirection: 'row',
+      padding: 10,
+      alignItems: 'center',
+      borderBottomWidth: 1,
+      borderBottomColor: '#303030',
     },
     albumPhoto: {
-        width: 100,
-        height: 100,
-        resizeMode: 'cover',
-        marginRight: 10,
-      },
-    item: {
-        padding: 10,
-        fontSize: 15,
-        flexWrap: 'wrap',
-        fontWeight: 'bold',
-        color: 'white'
+      width: 70,
+      height: 70,
+      borderRadius: 35,
+      marginRight: 10,
     },
-    border: {
-        flex: 1,
-    }
-});
+    albumName: {
+      color: 'white',
+      fontSize: 18,
+      flexShrink: 1,
+    },
+  });
 
 export default ListOfAlbums;
