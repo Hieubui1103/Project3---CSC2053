@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ListOfAlbums from './ListOfAlbums';
 import SearchBar from './SearchBar' ;
 import SongDetailed from './SongDetailed';
-
+import Lyrics from './Lyrics';
 
 
 const Stack = createNativeStackNavigator();
@@ -18,10 +18,9 @@ export default function App() {
     <Stack.Screen name='Home' component={SearchBar} /> 
     <Stack.Screen name='Artist' component={ListOfAlbums} />
     <Stack.Screen name='Song Details' component={SongDetailed} />
+    <Stack.Screen name='Lyrics' component={Lyrics} />
     </Stack.Navigator>    
   </NavigationContainer>
-  
-
   ); 
 }
 
