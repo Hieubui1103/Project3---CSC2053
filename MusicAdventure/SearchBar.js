@@ -23,21 +23,20 @@ const SearchBar = ({ navigation }) => {
             <Text>Submit</Text>
           </TouchableOpacity>
         </View>
-      </View>
 
-      <View>
+      
         <Text style={styles.headers}> Looking for specific track? Search here!</Text>
         <TextInput
           style={styles.input}
           placeholder="Search song..."
-          onChangeText={text => setSearchSong(searchSong)}
-          value={searchText}
+          onChangeText={text => setSearchSong(text)}
+          value={searchSong}
         />
         <TextInput
           style={styles.input}
           placeholder="Search artitst..."
-          onChangeText={text => setSearchArtist(searchArtist)}
-          value={searchText}
+          onChangeText={text => setSearchArtist(text)}
+          value={searchArtist}
         />
 
         <View style={{ alignItems: "center", paddingVertical: 10 }}>
