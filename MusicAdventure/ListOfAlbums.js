@@ -33,10 +33,6 @@ const ListOfAlbums = ({ route,navigation }) => {
                 const data = await getInfo(capitalizeEachWord(route.params));
                 //console.log(data);
                 setAlbums(data); 
-                /*for (let i = 0; i < data.length; i++){
-                let songList = await getSongs(data[i].access, data[i].album_id);
-                console.log(data[i].album_name)
-                console.log(songList);}*/
 
             } catch (error) {
                 console.error('Error fetching data:', error);

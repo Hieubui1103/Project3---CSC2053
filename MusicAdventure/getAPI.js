@@ -1,14 +1,15 @@
+const { encode } = require('base-64');
+import { getToken } from './test'
+const clientId = '4b03037852e141998c4b9c9b0aa49b98';
+const clientSecret = '3cb10a9302b84244a2639a587cbf563c';
 
-const { getToken } = require('./test.js')
+const tokenUrl = 'https://accounts.spotify.com/api/token';
 
-async function getInfo(searchQuery) {
+async function getInfo(searchQuery = "Westlife") {
+    let searchUrl = `https://api.spotify.com/v1/search?q=${encodeURIComponent(searchQuery)}&type=album&limit=50`;
     try {
-
-        //const search = "Westlife";
-        const searchUrl = `https://api.spotify.com/v1/search?q=${encodeURIComponent(searchQuery)}&type=album&limit=50`;
-
-        //const token = await getToken();
-        const accessToken = "BQA4zvctGntyN1DbEim5A5cihzRk0bvAPCXm2EpmBtTLj29AAYqDKLl1g-oiCd9-zWVhQi3kvgI8c4uWVYCu_Mi4eDNuwF7nrHz7bBnFYD9yT4Lv-Ys"
+          const accessToken = "BQA41Txa2-YkRNYRYO2zQsegEaACgsDtkbXoLO4s5kCOQBBSN4UrUItJl2SVVA6H4rkziv0PJ8uVfzX30QcF5NmVdCgP52rx-nHNsWGbMQ25DjFOCX0";
+          //console.log(data)
         const response = await fetch(searchUrl, {
             method: "GET",
             headers: {

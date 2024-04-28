@@ -20,7 +20,7 @@ async function getToken() {
       //console.log(`Basic ${encode(`${clientId}:${clientSecret}`).toString('base64')}`);
       const data = await response.json();
       const accessToken = data.access_token;
-      console.log(data)
+      console.log(accessToken)
 
       return accessToken;
     } catch (error) {

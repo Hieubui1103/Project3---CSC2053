@@ -1,27 +1,53 @@
 import React, { useState } from 'react';
 import { StyleSheet, TextInput, TouchableOpacity, View, Text } from 'react-native';
 
-const SearchBar = ({ navigation}) => {
+const SearchBar = ({ navigation }) => {
   const [searchText, setSearchText] = useState('');
+  const [searchSong, setSearchSong] = useState('');
+  const [searchArtist, setSearchArtist] = useState('');
 
   return (
     <View style={styles.body}>
       <Text style={styles.headers}> Looking for albums and tracks? Search here!</Text>
-    <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="Search..."
-        onChangeText={text => setSearchText(text)}
-        value={searchText}
-        //onSubmitEditing={() => navigation.navigate('Artist', searchText)}
-      />
-      <View style={{alignItems: "center", paddingVertical: 10 }}>
-      <TouchableOpacity style={styles.button}
-      onPress={() => navigation.navigate('Artist', searchText)} >
-        <Text>Submit</Text>
-      </TouchableOpacity>
+      <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          placeholder="Search..."
+          onChangeText={text => setSearchText(text)}
+          value={searchText}
+        />
+
+        <View style={{ alignItems: "center", paddingVertical: 10 }}>
+          <TouchableOpacity style={styles.button}
+            onPress={() => navigation.navigate('Artist', searchText)} >
+            <Text>Submit</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+
+      <View>
+        <Text style={styles.headers}> Looking for specific track? Search here!</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Search song..."
+          onChangeText={text => setSearchSong(searchSong)}
+          value={searchText}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Search artitst..."
+          onChangeText={text => setSearchArtist(searchArtist)}
+          value={searchText}
+        />
+
+        <View style={{ alignItems: "center", paddingVertical: 10 }}>
+          <TouchableOpacity style={styles.button}
+            onPress={() => navigation.navigate('Lyrics', { title: searchSong, artist: searchArtist })} >
+            <Text>Submit</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      
     </View>
   );
 };
