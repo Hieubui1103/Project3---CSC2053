@@ -4,26 +4,30 @@ import { StyleSheet, TextInput, TouchableOpacity, View, Text } from 'react-nativ
 const SearchBar = ({ navigation}) => {
   const [searchText, setSearchText] = useState('');
 
+  const search = () => {
+    if (searchText) {
+      navigation.navigate('Artist', searchText ); 
+    }
+  };
+  
   return (
     <View style={styles.body}>
-      <Text style={styles.title}> Looking for albums and tracks? Search here!</Text>
-    <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="Search..."
-        onChangeText={text => setSearchText(text)}
-        value={searchText}
-        //onSubmitEditing={() => navigation.navigate('Artist', searchText)}
-      />
-      <View style={{alignItems: "center", paddingVertical: 10 }}>
-      <TouchableOpacity style={styles.body}
-      onPress={() => navigation.navigate('Artist', searchText)} >
-        <Text>Submit</Text>
-      </TouchableOpacity>
+      <Text style={styles.title}>Find albums & tracks by artist</Text>
+      <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          placeholder="Search For Artists..."
+          onChangeText={text => setSearchText(text)}
+          value={searchText}
+          
+          onSubmitEditing={search}
+        />
+        <View style={{alignItems: "center", paddingVertical: 10 }}>
+        </View>
       </View>
     </View>
-    </View>
   );
+  
 };
 
 const styles = StyleSheet.create({

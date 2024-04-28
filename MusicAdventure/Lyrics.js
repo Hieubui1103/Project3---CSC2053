@@ -53,15 +53,16 @@ export default function Lyrics({ route }) {
     );
 }
 
+
 const styles = StyleSheet.create({
-    body:{
-        backgroundColor: '#3D213E', 
+    body: {
         flex: 1,
-        paddingLeft: 10,
-        paddingBottom: 50
+        backgroundColor: "#1E1E1E",
+        justifyContent: 'flex-start',
+        alignItems: 'center',
     },
     scrollViewContainer: {
-        backgroundColor: '#3D213E',
+        backgroundColor: "#1E1E1E",
     },
     container: {
         flex: 1,
@@ -72,7 +73,9 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 16,
         fontStyle: 'italic',
-        lineHeight: 30
+        lineHeight: 30,
+
+      paddingVertical: 5,
     }
 });
 

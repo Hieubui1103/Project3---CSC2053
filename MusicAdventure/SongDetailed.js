@@ -6,62 +6,48 @@ const SongDetailed = ({ route, navigation }) => {
     console.log(route.params)
     return (
         <View style={styles.container}>
-            <View style={styles.containerHeader}>
             <Image source={{ uri: albumImage }} style={styles.albumPhoto}/>
-            <Text style={styles.albumName}>{albumName}</Text>
-            </View>
+            <Text style={styles.albumName}>{albumName}</Text>    
             
             <FlatList
                 data={songList}
                 renderItem={({ item }) => (
                 <TouchableOpacity onPress={() => {navigation.navigate('Lyrics', {title: item, artist: artist})}}>
                     <View >
-                        <Text style={styles.item}>{item}</Text>
+                        <Text style={styles.songItem}>{item}</Text>
                     </View>
                 </TouchableOpacity>
-                )}
-                
-            />
-            
+                )}           
+                keyExtractor={(item, index) => index.toString()}  
+            />       
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        paddingBottom: 50, 
-        backgroundColor: "#3D213E"
-    },
-    containerHeader: {
-        flexDirection: 'row', // Arrange children horizontally
-        alignItems: 'center', // Align children vertically
-        padding: 10,
-        marginBottom: 10
+      flex: 1,
+      backgroundColor: "#1E1E1E",
+      alignItems: 'center',
+      paddingTop: 20,
     },
     albumPhoto: {
-        width: 100,
-        height: 100,
-        resizeMode: 'cover',
-        marginRight: 10,
-      },
-    item: {
-        padding: 5,
-        fontSize: 16,
-        flexWrap: 'wrap',
-        height: 54,
-        color: 'white'
+      width: 150,
+      height: 150,
+      resizeMode: 'contain',
+      marginBottom: 10,
     },
     albumName: {
-        width: 280,
-        flexWrap: 'wrap',
-        padding: 10,
-        fontSize: 20,
-        marginTop: 15,
-        marginBottom: 15,
-        color: 'lightgrey',
-        
-    }
-});
+      fontSize: 22,
+      color: 'white',
+      marginBottom: 20,
+    },
+    songItem: {
+      color: 'white',
+      fontSize: 18,
+      paddingVertical: 5,
+    },
+  });
+  
 
 export default SongDetailed;
