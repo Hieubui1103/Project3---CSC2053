@@ -6,7 +6,7 @@ const SearchBar = ({ navigation}) => {
 
   return (
     <View style={styles.body}>
-      <Text style={styles.headers}> Looking for albums and tracks? Search here!</Text>
+      <Text style={styles.title}> Looking for albums and tracks? Search here!</Text>
     <View style={styles.container}>
       <TextInput
         style={styles.input}
@@ -16,7 +16,7 @@ const SearchBar = ({ navigation}) => {
         //onSubmitEditing={() => navigation.navigate('Artist', searchText)}
       />
       <View style={{alignItems: "center", paddingVertical: 10 }}>
-      <TouchableOpacity style={styles.button}
+      <TouchableOpacity style={styles.body}
       onPress={() => navigation.navigate('Artist', searchText)} >
         <Text>Submit</Text>
       </TouchableOpacity>
@@ -29,35 +29,29 @@ const SearchBar = ({ navigation}) => {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    backgroundColor: "#3D213E"
+    backgroundColor: "#1E1E1E",
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
-  headers: {
-    paddingLeft: 7,
-    paddingTop: 15,
-    paddingBottom: 10,
-    fontSize: 18,
-    color: 'white'
-  },
-  container: {
-    paddingHorizontal: 10,
-    paddingTop: 10,
+  title: {
+    paddingTop: 20,
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'white',
+    alignSelf: 'center',
+    marginBottom: 5,
   },
   input: {
-    height: 40,
+    height: 50,
+    width: '80%', 
+    marginVertical: 20,
     borderWidth: 1,
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    backgroundColor: 'lightgrey'
+    borderRadius: 25,
+    paddingHorizontal: 15,
+    backgroundColor: '#333',
+    color: 'white',
+    fontSize: 16,
   },
-  button: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 2,
-    width: 80, // Set a fixed width for the button
-    height: 40,
-    borderRadius: 5,
-    backgroundColor: 'lightgrey',
-  }
 });
 
 export default SearchBar;
