@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import { StyleSheet, TextInput, TouchableOpacity, View, Text } from 'react-native';
 
+function removeExtraWhitespace(name) {
+  // Remove whitespace after the last word
+  name = name.replace(/\s+$/, '');
+
+  // Remove whitespace before the first word
+  name = name.replace(/^\s+/, '');
+
+  return name;
+}
+
 const SearchBar = ({ navigation}) => {
   const [searchText, setSearchText] = useState('');
   const [searchSong, setSearchSong] = useState('');
@@ -8,14 +18,14 @@ const SearchBar = ({ navigation}) => {
 
   const search = () => {
     if (searchText) {
-      navigation.navigate('Artist', searchText ); 
+      navigation.navigate('Artist', removeExtraWhitespace(searchText) ); 
     }
   };
 
   const searchLyric = () => {
     console.log({ title: searchSong, artist: searchArtist });
     if (searchSong && searchArtist) {
-      navigation.navigate('Lyrics', { title: searchSong, artist: searchArtist });
+      navigation.navigate('Lyrics', { title: removeExtraWhitespace(searchSong), artist: removeExtraWhitespace(searchArtist) });
     }
   };
   
@@ -30,6 +40,7 @@ const SearchBar = ({ navigation}) => {
           value={searchText}
           onSubmitEditing={search}
         />
+
         <View style={{alignItems: "center", paddingVertical: 10 }}>
         <Text style={styles.title}> Looking for a specific track? Search here!</Text>
         <TextInput
@@ -62,7 +73,8 @@ const styles = StyleSheet.create({
   },
   title: {
     paddingTop: 20,
-    fontSize: 24,
+    paddingHorizontal: 10,
+    fontSize: 22,
     fontWeight: 'bold',
     color: 'white',
     alignSelf: 'center',
