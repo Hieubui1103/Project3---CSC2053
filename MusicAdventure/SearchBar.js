@@ -36,6 +36,7 @@ const SearchBar = ({ navigation}) => {
         <TextInput
           style={styles.input}
           placeholder="Search For Artists..."
+          placeholderTextColor="gray"
           onChangeText={text => setSearchText(text)}
           value={searchText}
           onSubmitEditing={search}
@@ -46,6 +47,7 @@ const SearchBar = ({ navigation}) => {
         <TextInput
           style={styles.input}
           placeholder="Search song..."
+          placeholderTextColor="gray"
           onChangeText={text => setSearchSong(text)}
           value={searchSong}
           onSubmitEditing={searchLyric}
@@ -53,6 +55,7 @@ const SearchBar = ({ navigation}) => {
         <TextInput
           style={styles.input}
           placeholder="Search artitst..."
+          placeholderTextColor="gray"
           onChangeText={text => setSearchArtist(text)}
           value={searchArtist}
           onSubmitEditing={searchLyric}
