@@ -33,7 +33,7 @@ const ListOfAlbums = ({ route,navigation }) => {
                 const data = await getInfo(capitalizeEachWord(route.params));
                 //console.log(data);
                 setAlbums(data); 
-                console.log(albums);
+                //console.log(albums);
                 /*for (let i = 0; i < data.length; i++){
                 let songList = await getSongs(data[i].access, data[i].album_id);
                 console.log(data[i].album_name)
